@@ -33,13 +33,13 @@
 	// based on this setting.
 	// WARNING: Override at your own risk - using a custom binary can cause compatibility issues with server settings.
 	"server_path": "auto",
-	"command": [
-		"semgrep",
-		"lsp"
-	],
 	"selector": "source.apex | source.shell.bash | source.c | source.c++ | source.cs | source.clojure | source.dart | source.dockerfile | source.containerfile | source.elixir | text.html.basic | source.go | source.java | source.js | source.jsx | source.json | source.julia | source.jsonnet | source.kotlin | source.lisp | source.lua | source.ocaml | embedding.php | source.python | source.r | source.ruby | source.rust | source.scala | source.scheme | source.solidity | source.swift | source.terraform | source.terraform-vars | source.ts | source.tsx | source.yaml | source.yml | text.xml | text.html.erb | text.html.rails | text.jinja | text.html.jinja",
 	"schemes": [
 		"file", // regular files
 		"buffer", // in-memory buffers
+	],
+	"command": [
+		"${server_path}",
+		"lsp"
 	],
 }

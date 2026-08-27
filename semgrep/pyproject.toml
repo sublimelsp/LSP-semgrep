@@ -1,0 +1,7 @@
+[project]
+name = "lsp-semgrep"
+version = "1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "semgrep==1.175.0",
+]

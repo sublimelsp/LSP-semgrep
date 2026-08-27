@@ -4,9 +4,12 @@ from LSP.plugin import LspPlugin
 from LSP.plugin import LspWindowCommand
 from LSP.plugin import Notification
 from LSP.plugin import notification_handler
+from LSP.plugin import OnPreStartContext
 from LSP.plugin import Request
 from LSP.plugin.core.open import open_externally
 from LSP.plugin.core.protocol import Error
+from lsp_utils import UvVenvManager
+from sublime_lib import ResourcePath
 from typing import cast
 from typing import final
 from typing import TypedDict
@@ -39,6 +42,12 @@ class LspSemgrepPlugin(LspPlugin):
 
     deployment_info: DeploymentInfo | None = None
     """The deployment the user is logged in to, or `None` when not logged in."""
+
+    @classmethod
+    def on_pre_start_async(cls, context: OnPreStartContext) -> None:
+        package_name = cls.plugin_storage_path.name
+        UvVenvManager.on_pre_start_async(
+            context, cls.plugin_storage_path, ResourcePath('Packages', package_name, 'semgrep'), 'semgrep')
 
     def on_initialized_async(self) -> None:
         if session := self.weaksession():

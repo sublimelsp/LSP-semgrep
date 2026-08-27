@@ -2,9 +2,8 @@ name: Check configuration schema changes
 
 on:
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    paths:
+      - 'semgrep/pyproject.toml'
 
 permissions:
   pull-requests: write
