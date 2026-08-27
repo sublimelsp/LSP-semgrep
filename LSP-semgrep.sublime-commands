@@ -8,6 +8,14 @@
         "command": "lsp_semgrep_logout"
     },
     {
+        "caption": "LSP-semgrep: Scan Changed Files in Workspace",
+        "command": "lsp_semgrep_scan_workspace"
+    },
+    {
+        "caption": "LSP-semgrep: Scan All Files in Workspace",
+        "command": "lsp_semgrep_scan_workspace_full"
+    },
+    {
         "caption": "Preferences: LSP-semgrep Settings",
         "command": "edit_settings",
         "args": {

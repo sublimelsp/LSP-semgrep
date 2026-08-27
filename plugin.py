@@ -21,6 +21,12 @@ class DeploymentInfo(TypedDict):
     authToken: str
 
 
+class ScanWorkspaceParams(TypedDict):
+    """Params of the `semgrep/scanWorkspace` notification."""
+
+    full: bool
+
+
 class LoginStartResponse(TypedDict):
     """Result of the `semgrep/loginStart` request. Also the params of the `semgrep/loginFinish` request."""
 
@@ -116,6 +122,27 @@ class LspSemgrepLogoutCommand(LspSemgrepWindowCommand):
             session.send_notification(Notification('semgrep/logout'))
         if plugin := self.plugin():
             plugin.set_deployment_info_async(None)
+
+
+class LspSemgrepScanWorkspaceCommand(LspSemgrepWindowCommand):
+    """Scans the files that changed since the last commit."""
+
+    # TODO: Needs to toggle `onlyGitDirty` and restart server before scanning if doesn't match current value.
+    full = False
+
+    def run(self) -> None:
+        sublime.set_timeout_async(self._run_async)
+
+    def _run_async(self) -> None:
+        if session := self.session():
+            params: ScanWorkspaceParams = {'full': self.full}
+            session.send_notification(Notification('semgrep/scanWorkspace', params))
+
+
+class LspSemgrepScanWorkspaceFullCommand(LspSemgrepScanWorkspaceCommand):
+    """Scans all the files in the workspace."""
+
+    full = True
 
 
 def plugin_loaded() -> None:
