@@ -1,0 +1,45 @@
+{
+	"initialization_options": {
+		// Send metrics to Semgrep to help improve our products and services. Telemetry data includes scan metrics, extension runtime version details, and other information as described here: https://semgrep.dev/docs/metrics#data-collected-as-metrics.
+		"metrics": true,
+		// Each item can be a YAML configuration file, directory of YAML files ending in .yml | .yaml, URL of a configuration file, or Semgrep registry entry name. Use "auto" to automatically obtain rules tailored to this project; your project URL will be used to log in to the Semgrep registry.
+		"scan.configuration": [],
+		// List of files or directories to exclude.
+		"scan.exclude": [],
+		// List of files or directories to include.
+		"scan.include": [],
+		// Number of parallel jobs to run. (does not apply to experimental language server)
+		"scan.jobs": 2,
+		// Maximum memory to use in megabytes.
+		"scan.maxMemory": 0,
+		// Maximum size of target in bytes to scan.
+		"scan.maxTargetBytes": 1000000,
+		// Maximum time to scan in seconds.
+		"scan.timeout": 30,
+		// Maximum number of rules that can timeout on a file before the file is skipped. If set to 0 will not have limit. Defaults to 3.
+		"scan.timeoutThreshold": 3,
+		// Only scan lines changed since the last commit
+		"scan.onlyGitDirty": true,
+		// Enable intrafile scanning using the Semgrep Pro Engine (requires Pro Engine to be already installed)
+		"scan.pro_intrafile": false,
+		// (experimental) Enable secrets scanning using the Semgrep Pro Engine (requires Pro Engine and experimental language server)
+		"scan.secrets": false,
+		// Enable hovering for AST node viewing (requires restart)
+		"doHover": false,
+	},
+	// The path to the server binary used to start the language server.
+	// Use `auto` for the package to manage (install/update) the server automatically.
+	// NOTE: Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved
+	// based on this setting.
+	// WARNING: Override at your own risk - using a custom binary can cause compatibility issues with server settings.
+	"server_path": "auto",
+	"command": [
+		"semgrep",
+		"lsp"
+	],
+	"selector": "source.apex | source.shell.bash | source.c | source.c++ | source.cs | source.clojure | source.dart | source.dockerfile | source.containerfile | source.elixir | text.html.basic | source.go | source.java | source.js | source.jsx | source.json | source.julia | source.jsonnet | source.kotlin | source.lisp | source.lua | source.ocaml | embedding.php | source.python | source.r | source.ruby | source.rust | source.scala | source.scheme | source.solidity | source.swift | source.terraform | source.terraform-vars | source.ts | source.tsx | source.yaml | source.yml | text.xml | text.html.erb | text.html.rails | text.jinja | text.html.jinja",
+	"schemes": [
+		"file", // regular files
+		"buffer", // in-memory buffers
+	],
+}

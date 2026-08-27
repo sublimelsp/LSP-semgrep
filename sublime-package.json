@@ -1,0 +1,134 @@
+{
+  "contributions": {
+    "settings": [
+      {
+        "file_patterns": [
+          "/LSP-semgrep.sublime-settings"
+        ],
+        "schema": {
+          "$id": "sublime://settings/LSP-semgrep",
+          "definitions": {
+            "PluginConfig": {
+              "properties": {
+                "server_path": {
+                  "type": "string",
+                  "default": "auto",
+                  "markdownDescription": "The path to the server binary to use for starting the language server. Use `auto` for the package to manage (install/update) server automatically.\n\n> [!NOTE]\n> Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved based on this setting.\n\n> [!WARNING]\n> Using custom binary could result in package settings not matching what server supports."
+                },
+                "initialization_options": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "metrics": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Send metrics to Semgrep to help improve our products and services. Telemetry data includes scan metrics, extension runtime version details, and other information as described here: https://semgrep.dev/docs/metrics#data-collected-as-metrics."
+                    },
+                    "scan.configuration": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": [],
+                      "description": "Each item can be a YAML configuration file, directory of YAML files ending in .yml | .yaml, URL of a configuration file, or Semgrep registry entry name. Use \"auto\" to automatically obtain rules tailored to this project; your project URL will be used to log in to the Semgrep registry."
+                    },
+                    "scan.exclude": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": [],
+                      "description": "List of files or directories to exclude."
+                    },
+                    "scan.include": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": [],
+                      "description": "List of files or directories to include."
+                    },
+                    "scan.jobs": {
+                      "type": "integer",
+                      "default": 2,
+                      "description": "Number of parallel jobs to run. (does not apply to experimental language server)"
+                    },
+                    "scan.maxMemory": {
+                      "type": "integer",
+                      "default": 0,
+                      "description": "Maximum memory to use in megabytes."
+                    },
+                    "scan.maxTargetBytes": {
+                      "type": "integer",
+                      "default": 1000000,
+                      "description": "Maximum size of target in bytes to scan."
+                    },
+                    "scan.timeout": {
+                      "type": "integer",
+                      "default": 30,
+                      "description": "Maximum time to scan in seconds."
+                    },
+                    "scan.timeoutThreshold": {
+                      "type": "integer",
+                      "default": 3,
+                      "description": "Maximum number of rules that can timeout on a file before the file is skipped. If set to 0 will not have limit. Defaults to 3."
+                    },
+                    "scan.onlyGitDirty": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Only scan lines changed since the last commit"
+                    },
+                    "scan.pro_intrafile": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Enable intrafile scanning using the Semgrep Pro Engine (requires Pro Engine to be already installed)"
+                    },
+                    "scan.secrets": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "(experimental) Enable secrets scanning using the Semgrep Pro Engine (requires Pro Engine and experimental language server)"
+                    },
+                    "doHover": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Enable hovering for AST node viewing (requires restart)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "sublime://settings/LSP-plugin-base"
+            },
+            {
+              "$ref": "sublime://settings/LSP-semgrep#/definitions/PluginConfig"
+            }
+          ]
+        }
+      },
+      {
+        "file_patterns": [
+          "/*.sublime-project"
+        ],
+        "schema": {
+          "properties": {
+            "settings": {
+              "properties": {
+                "LSP": {
+                  "properties": {
+                    "LSP-semgrep": {
+                      "$ref": "sublime://settings/LSP-semgrep#/definitions/PluginConfig"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+[
+    {
+        "caption": "LSP-semgrep: Sign In",
+        "command": "lsp_semgrep_login"
+    },
+    {
+        "caption": "LSP-semgrep: Sign Out",
+        "command": "lsp_semgrep_logout"
+    },
+    {
+        "caption": "Preferences: LSP-semgrep Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/LSP-semgrep/LSP-semgrep.sublime-settings",
+            "default": "// Settings in here override those in \"LSP-semgrep/LSP-semgrep.sublime-settings\"\n\n{\n\t$0\n}\n"
+        }
+    },
+]

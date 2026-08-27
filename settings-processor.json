@@ -1,0 +1,35 @@
+{
+    "input_repository_url": "https://github.com/semgrep/semgrep-vscode",
+    "input_repository_json_configuration_path": "package.json",
+    "transformers": [
+        {
+            "type": "jq",
+            "options": ".contributes.configuration.properties"
+        },
+        {
+            "type": "remove_keys",
+            "options": [
+                "semgrep.trace.server",
+                "semgrep.path",
+                "semgrep.ignoreCliVersion",
+                "semgrep.useExperimentalLS"
+            ]
+        },
+        {
+            "type": "jq",
+            "options": "with_entries(.key |= ltrimstr(\"semgrep.\"))"
+        }
+    ],
+    "render_templates": [
+        {
+            "type": "settings",
+            "template_path": "templates/sublime-settings.jinja.json",
+            "output_path": "LSP-semgrep.sublime-settings"
+        },
+        {
+            "type": "schema",
+            "template_path": "templates/sublime-package.jinja.json",
+            "output_path": "sublime-package.json"
+        }
+    ]
+}
