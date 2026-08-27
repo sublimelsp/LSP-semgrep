@@ -8,6 +8,10 @@
         "command": "lsp_semgrep_logout"
     },
     {
+        "caption": "LSP-semgrep: Update Rules",
+        "command": "lsp_semgrep_refresh_rules"
+    },
+    {
         "caption": "LSP-semgrep: Scan Changed Files in Workspace",
         "command": "lsp_semgrep_scan_workspace"
     },

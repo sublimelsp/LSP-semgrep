@@ -133,6 +133,17 @@ class LspSemgrepLogoutCommand(LspSemgrepWindowCommand):
             plugin.set_deployment_info_async(None)
 
 
+class LspSemgrepRefreshRulesCommand(LspSemgrepWindowCommand):
+    """Makes the server reload the rules. The server responds with the `semgrep/rulesRefreshed` notification."""
+
+    def run(self) -> None:
+        sublime.set_timeout_async(self._run_async)
+
+    def _run_async(self) -> None:
+        if session := self.session():
+            session.send_notification(Notification('semgrep/refreshRules'))
+
+
 class LspSemgrepScanWorkspaceCommand(LspSemgrepWindowCommand):
     """Scans the files that changed since the last commit."""
 
