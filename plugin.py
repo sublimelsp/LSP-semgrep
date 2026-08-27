@@ -50,8 +50,7 @@ class LspSemgrepPlugin(LspPlugin):
         status = 'not logged in'
         if deployment_info:
             # `authToken` is deliberately not exposed as it's a secret.
-            status = 'logged-in, deployment "{}", id: {}'.format(
-                deployment_info['deploymentName'], deployment_info['deploymentId'])
+            status = f'logged-in: {deployment_info["deploymentName"]}'
         if session := self.weaksession():
             session.set_config_status_async(status)
 
